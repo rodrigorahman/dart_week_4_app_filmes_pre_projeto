@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1087745249259",
+    "project_id": "dw-4-pre-evento",
+    "storage_bucket": "dw-4-pre-evento.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1087745249259:android:d2f88d422b287952cb13ae",
+        "android_client_info": {
+          "package_name": "br.com.academiadoflutter.filmes_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1087745249259-me1epp8o5kee2v8sehrhpai2ja99gt4g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.academiadoflutter.filmes_app",
+            "certificate_hash": "ac1b1f8fd50ecca1b18b66ababf12c763100adeb"
+          }
+        },
+        {
+          "client_id": "1087745249259-k5s39n3uvntv3vdsl37h4158gm2ubp0g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHEMCkFuH-8D6YPDhPw6zOBT-r9ka4QJA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1087745249259-k5s39n3uvntv3vdsl37h4158gm2ubp0g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

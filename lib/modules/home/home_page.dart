@@ -3,16 +3,17 @@ import 'package:filmes_app/application/ui/theme_extension.dart';
 import 'package:filmes_app/modules/favorites/favorites_bindings.dart';
 import 'package:filmes_app/modules/favorites/favorites_page.dart';
 import 'package:filmes_app/modules/home/home_controller.dart';
+import 'package:filmes_app/modules/movies/movies_bindings.dart';
 import 'package:filmes_app/modules/movies/movies_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/route_manager.dart';
 import 'package:get/state_manager.dart';
 
-class HomePage extends GetView<HomeController> {
-  
-  const HomePage({Key? key}) : super(key: key);
+import 'package:get/get.dart';
 
+class HomePage extends GetView<HomeController> {
+  const HomePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,16 +43,16 @@ class HomePage extends GetView<HomeController> {
       ),
       body: Navigator(
         initialRoute: '/movies',
-        key: Get.nestedKey(1),
+        key: Get.nestedKey(HomeController.NAVIGATOR_INDEX),
         onGenerateRoute: (RouteSettings settings) {
           if (settings.name == '/movies') {
             return GetPageRoute(
               settings: settings,
               page: () => const MoviesPage(),
-              // binding: MoviesBinding(),
+              binding: MoviesBindings(),
             );
           }
-
+          
           if (settings.name == '/favorites') {
             return GetPageRoute(
               settings: settings,

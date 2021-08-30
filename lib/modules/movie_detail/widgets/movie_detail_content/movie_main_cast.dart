@@ -1,9 +1,11 @@
 import 'package:filmes_app/application/ui/theme_extension.dart';
+import 'package:filmes_app/models/movie_detail_model.dart';
 import 'package:filmes_app/modules/movie_detail/widgets/movie_detail_content/movie_cast.dart';
 import 'package:flutter/material.dart';
-    
+
 class MovieMainCast extends StatefulWidget {
-  const MovieMainCast({Key? key}) : super(key: key);
+  final MovieDetailModel? movie;
+  const MovieMainCast({Key? key, required this.movie}) : super(key: key);
 
   @override
   _MovieMainCastState createState() => _MovieMainCastState();
@@ -11,7 +13,6 @@ class MovieMainCast extends StatefulWidget {
 
 class _MovieMainCastState extends State<MovieMainCast> {
   bool showPanel = false;
-  
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,7 @@ class _MovieMainCastState extends State<MovieMainCast> {
                 child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      'Elenco principal',
+                      'Elenco',
                       style: TextStyle(fontSize: 16),
                     )),
               ),
@@ -47,14 +48,23 @@ class _MovieMainCastState extends State<MovieMainCast> {
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    children: const [
-                      MovieCast(),
-                      MovieCast(),
-                      MovieCast(),
-                      MovieCast(),
-                      MovieCast(),
-                    ],
-                  ),
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                      children: widget.movie?.cast
+                              .map(
+                                (c) => MovieCast(
+                                  cast: c,
+                                ),
+                              )
+                              .toList() ??
+                          []
+                      // [
+                      //   MovieCast(),
+                      //   MovieCast(),
+                      //   MovieCast(),
+                      //   MovieCast(),
+                      //   MovieCast(),
+                      // ],
+                      ),
                 ),
               ),
             )

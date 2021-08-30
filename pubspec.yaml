@@ -22,12 +22,20 @@ environment:
 
 dependencies:
   cupertino_icons: ^1.0.2
+  firebase_auth: ^3.0.2
+  firebase_core: ^1.5.0
+  firebase_remote_config: ^0.10.0+4
   flutter:
     sdk: flutter
   flutter_rating_stars: ^1.0.3+4
   flutter_signin_button: ^2.0.0
-  get: ^4.3.8
-
+  get:
+    git: https://github.com/rodrigorahman/getx.git
+  google_sign_in: ^5.0.7
+  intl: ^0.17.0
+  cloud_firestore: ^2.5.1
+  logger: ^1.1.0
+  
 dev_dependencies:
   flutter_launcher_icons: ^0.9.1
   flutter_lints: ^1.0.4
@@ -69,7 +77,6 @@ flutter:
         - asset: assets/fonts/metropolis/Metropolis-SemiBold.otf
           weight: 600
         - asset: assets/fonts/metropolis/Metropolis-Bold.otf
-
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

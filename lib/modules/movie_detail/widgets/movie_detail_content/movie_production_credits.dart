@@ -1,39 +1,33 @@
+import 'package:filmes_app/models/movie_detail_model.dart';
 import 'package:flutter/material.dart';
-    
-class MovieProductionCredits extends StatelessWidget {
 
-  const MovieProductionCredits({ Key? key }) : super(key: key);
-  
+class MovieProductionCredits extends StatelessWidget {
+  final MovieDetailModel? movie;
+  const MovieProductionCredits({Key? key, required this.movie})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: List.generate(3, (index) => index)
-            .map(
-              (e) => Container(
-                margin: const EdgeInsets.only(bottom: 5),
-                child: RichText(
-                  text: const TextSpan(
-                    text: 'Companhia(s) produtora(s): ',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF222222),
-                    ),
-                    children: [
-                      TextSpan(
-                        text: 'Pixar Animation, Studios e Walt Disney Pictures',
-                        style: TextStyle(
-                            fontWeight: FontWeight.normal,
-                            color: Color(0xFF222222)),
-                      ),
-                    ],
-                  ),
-                ),
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 5),
+        child: RichText(
+          text: TextSpan(
+            text: 'Companhia(s) produtora(s): ',
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF222222),
+            ),
+            children: [
+              TextSpan(
+                text: movie?.productionCompanies.join(', ') ?? '',
+                style: const TextStyle(
+                    fontWeight: FontWeight.normal, color: Color(0xFF222222)),
               ),
-            )
-            .toList(),
+            ],
+          ),
+        ),
       ),
     );
   }

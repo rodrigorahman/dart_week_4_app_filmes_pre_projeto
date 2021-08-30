@@ -1,8 +1,10 @@
 import 'package:filmes_app/application/ui/theme_extension.dart';
+import 'package:filmes_app/models/cast_model.dart';
 import 'package:flutter/material.dart';
 
 class MovieCast extends StatelessWidget {
-  const MovieCast({Key? key}) : super(key: key);
+  final CastModel cast;
+  const MovieCast({Key? key, required this.cast}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,21 +17,24 @@ class MovieCast extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.network(
-                'https://upload.wikimedia.org/wikipedia/en/4/4e/Captain_Marvel_%28film%29_poster.jpg',
+                'https://image.tmdb.org/t/p/w200/${cast.image}',
                 width: 85,
                 height: 85,
                 fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return Image.network('https://static.thenounproject.com/png/2073332-200.png');
+                },
               ),
             ),
             const SizedBox(
               height: 10,
             ),
-            const Text(
-              'Giacomo Gianniotti',
-              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+            Text(
+              cast.name,
+              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
             ),
             Text(
-              'Giacomo',
+              cast.character,
               style: TextStyle(fontSize: 12, color: context.themeGrey),
             )
           ],

@@ -1,9 +1,11 @@
 import 'package:filmes_app/application/ui/theme_extension.dart';
+import 'package:filmes_app/models/movie_detail_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 
 class MovieTitle extends StatelessWidget {
-  const MovieTitle({Key? key}) : super(key: key);
+  final MovieDetailModel? movie;
+  const MovieTitle({Key? key, required this.movie}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,9 +14,9 @@ class MovieTitle extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Luca',
-            style: TextStyle(
+          Text(
+            movie?.title ?? '',
+            style: const TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.w600,
             ),
@@ -23,7 +25,7 @@ class MovieTitle extends StatelessWidget {
             height: 10,
           ),
           RatingStars(
-            value: 5,
+            value: (movie?.stars ?? 1) / 2,
             valueLabelVisibility: false,
             starColor: context.themeOrange,
             starSize: 14,
@@ -32,7 +34,7 @@ class MovieTitle extends StatelessWidget {
             height: 10,
           ),
           Text(
-            'Animação, Comédia, Família, Fantasia',
+            movie?.genres.map((e) => e.name).join(', ') ?? '',
             style: TextStyle(fontSize: 11, color: context.themeGrey),
           )
         ],

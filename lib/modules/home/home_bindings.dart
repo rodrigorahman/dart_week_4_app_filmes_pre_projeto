@@ -4,6 +4,11 @@ import 'package:get/get.dart';
 class HomeBindings implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => HomeController());
+    Get.lazyPut(
+      () => HomeController(
+        loginService: Get.find(),
+      ),
+      fenix: true
+    );
   }
 }

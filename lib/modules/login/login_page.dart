@@ -31,12 +31,10 @@ class LoginPage extends GetView<LoginController> {
                     height: 50,
                   ),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width *.70,
+                    width: Get.width *.70,
                     child: SignInButton(
                       Buttons.Google,
-                      onPressed: () {
-                        Get.offNamed('/home');
-                      },
+                      onPressed: () => controller.login(),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(100)
                       ),

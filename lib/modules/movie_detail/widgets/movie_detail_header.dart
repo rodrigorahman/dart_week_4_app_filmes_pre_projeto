@@ -1,12 +1,14 @@
 import 'package:filmes_app/application/ui/filmes_app_icons.dart';
 import 'package:filmes_app/application/ui/theme_extension.dart';
+import 'package:filmes_app/models/movie_detail_model.dart';
 import 'package:flutter/material.dart';
 
 class MovieDetailHeader extends StatelessWidget {
 
   final bool favorite = false;
+  final MovieDetailModel? movie;
 
-  const MovieDetailHeader({Key? key}) : super(key: key);
+  const MovieDetailHeader({Key? key, required this.movie}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +20,13 @@ class MovieDetailHeader extends StatelessWidget {
             height: 278,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: 3,
+              itemCount: movie?.urlImages.length ?? 0,
               itemBuilder: (context, index) {
+                final image = movie?.urlImages[index];
                 return Padding(
                   padding: const EdgeInsets.all(2.0),
                   child: Image.network(
-                      'https://upload.wikimedia.org/wikipedia/en/4/4e/Captain_Marvel_%28film%29_poster.jpg'),
+                      'https://image.tmdb.org/t/p/w500$image'),
                 );
               },
             ),

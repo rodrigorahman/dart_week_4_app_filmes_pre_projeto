@@ -1,26 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-mixin LoaderMixin {
-  void loaderInitControll(RxBool loading) {
+mixin LoaderMixin on GetxController {
+  void loaderListener(RxBool loading) {
     ever(loading, (_) async {
       if (loading.isTrue) {
         await Get.dialog(
-          const _LoaderDialog(),
-          barrierDismissible: false,
+          const Center(
+            child: CircularProgressIndicator(),
+          ),
+          barrierDismissible: false
         );
-      } else {
+      }else{
         Get.back();
       }
     });
-  }
-}
-
-class _LoaderDialog extends StatelessWidget {
-  const _LoaderDialog({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: CircularProgressIndicator());
   }
 }
