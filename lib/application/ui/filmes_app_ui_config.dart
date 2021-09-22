@@ -13,12 +13,10 @@ class FilmesAppUiConfig {
           iconTheme: IconThemeData(
             color: Colors.black, //change your color here
           ),
-          textTheme: TextTheme(
-            headline6: TextStyle(
-              fontSize: 18,
-              color: Color(0xff222222),
-              fontWeight: FontWeight.w500,
-            ),
+          titleTextStyle: TextStyle(
+            fontSize: 18,
+            color: Color(0xff222222),
+            fontWeight: FontWeight.w500,
           ),
         ),
       );

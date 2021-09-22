@@ -4,13 +4,13 @@ import 'package:filmes_app/models/movie_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:intl/intl.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class MovieCard extends StatelessWidget {
-  
   final dateFormat = DateFormat('dd/MM/y');
   final MovieModel movieModel;
   final VoidCallback favoriteCallback;
-  
+
   MovieCard({
     Key? key,
     required this.movieModel,
@@ -20,8 +20,8 @@ class MovieCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Get.toNamed('/movie/detail', arguments: movieModel.id);
+      onTap: () async {
+        await Get.toNamed('/movie/detail', arguments: movieModel.id);
       },
       child: Container(
         padding: const EdgeInsets.all(8.0),
@@ -32,15 +32,31 @@ class MovieCard extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  width: 148,
-                  height: 184,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(movieModel.posterPath),
-                      fit: BoxFit.cover
-                    ),
+                // Container(
+                //   width: 148,
+                //   height: 184,
+                //   decoration: BoxDecoration(
+                //     image: DecorationImage(
+                //       image: NetworkImage(movieModel.posterPath),
+                //       fit: BoxFit.cover
+                //     ),
+                //     borderRadius: BorderRadius.circular(20),
+                //   ),
+                // ),
+
+                Material(
+                  elevation: 2,
+                  borderRadius: BorderRadius.circular(20),
+                  child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
+                    clipBehavior: Clip.antiAlias,
+                    child: FadeInImage.memoryNetwork(
+                      width: 148,
+                      height: 184,
+                      placeholder: kTransparentImage,
+                      image: movieModel.posterPath,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
                 const SizedBox(
@@ -50,8 +66,8 @@ class MovieCard extends StatelessWidget {
                   movieModel.title,
                   style: const TextStyle(
                       fontSize: 12, fontWeight: FontWeight.w600),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
                 ),
                 Text(
                   dateFormat.format(DateTime.parse(movieModel.releaseDate)),
@@ -78,7 +94,8 @@ class MovieCard extends StatelessWidget {
                       movieModel.favorite
                           ? FilmesAppIcons.heart
                           : FilmesAppIcons.heart_empty,
-                      color: movieModel.favorite ? context.themeRed : Colors.grey,
+                      color:
+                          movieModel.favorite ? context.themeRed : Colors.grey,
                     ),
                   ),
                 ),

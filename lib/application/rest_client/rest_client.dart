@@ -5,8 +5,7 @@ import 'package:get/get_connect.dart';
 import 'package:get/get_connect/http/src/request/request.dart';
 
 class RestClient extends GetConnect {
-
-  RestClient(){
+  RestClient() {
     httpClient.baseUrl = RemoteConfig.instance.getString('api_base_url');
   }
 
@@ -29,13 +28,12 @@ class RestClient extends GetConnect {
   }
 
   FutureOr<Request<dynamic>> _authInterceptor(Request<dynamic> request) {
-      final apiKey = RemoteConfig.instance.getString('api_token');
-      var newUrl = request.url.replace(queryParameters: {
-        ...request.url.queryParameters,
-        'api_key': apiKey,
-        'language': 'pt-br',
-      });
-      return request.copyWith(url: newUrl);
-    }
-
+    final apiKey = RemoteConfig.instance.getString('api_token');
+    var newUrl = request.url.replace(queryParameters: {
+      ...request.url.queryParameters,
+      'api_key': apiKey,
+      'language': 'pt-br',
+    });
+    return request.copyWith(url: newUrl);
+  }
 }

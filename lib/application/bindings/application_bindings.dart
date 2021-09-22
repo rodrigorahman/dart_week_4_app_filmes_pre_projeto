@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:filmes_app/application/rest_client/rest_client.dart';
+import 'package:filmes_app/application/ui/auth/auth_service.dart';
 import 'package:filmes_app/repositories/login/login_repository.dart';
 import 'package:filmes_app/repositories/login/login_repository_impl.dart';
 import 'package:filmes_app/repositories/movies/movies_repository.dart';
@@ -27,5 +28,6 @@ class ApplicationBindings implements Bindings {
         () => MoviesServiceImpl(moviesRepository: Get.find()),
         fenix: true);
 
+    Get.put(AuthService()).init();
   }
 }

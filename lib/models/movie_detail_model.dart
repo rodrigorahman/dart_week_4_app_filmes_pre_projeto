@@ -14,6 +14,7 @@ class MovieDetailModel {
   final List<String> productionCompanies;
   final String originalLanguage;
   final List<CastModel> cast;
+  final bool favorite;
 
   MovieDetailModel({
     required this.title,
@@ -25,6 +26,7 @@ class MovieDetailModel {
     required this.productionCompanies,
     required this.originalLanguage,
     required this.cast,
+    this.favorite = false
   });
 
   Map<String, dynamic> toMap() {
@@ -66,4 +68,30 @@ class MovieDetailModel {
 
   factory MovieDetailModel.fromJson(String source) =>
       MovieDetailModel.fromMap(json.decode(source));
+
+  MovieDetailModel copyWith({
+    String? title,
+    double? stars,
+    List<GenreModel>? genres,
+    List<String>? urlImages,
+    DateTime? releaseDate,
+    String? overview,
+    List<String>? productionCompanies,
+    String? originalLanguage,
+    List<CastModel>? cast,
+    bool? favorite,
+  }) {
+    return MovieDetailModel(
+      title: title ?? this.title,
+      stars: stars ?? this.stars,
+      genres: genres ?? this.genres,
+      urlImages: urlImages ?? this.urlImages,
+      releaseDate: releaseDate ?? this.releaseDate,
+      overview: overview ?? this.overview,
+      productionCompanies: productionCompanies ?? this.productionCompanies,
+      originalLanguage: originalLanguage ?? this.originalLanguage,
+      cast: cast ?? this.cast,
+      favorite: favorite ?? this.favorite,
+    );
+  }
 }

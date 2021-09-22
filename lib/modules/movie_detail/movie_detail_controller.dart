@@ -3,6 +3,7 @@ import 'package:filmes_app/application/ui/messages/messages_mixin.dart';
 import 'package:filmes_app/models/movie_detail_model.dart';
 import 'package:filmes_app/services/movies/movies_service.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 
 class MovieDetailController extends GetxController
     with LoaderMixin, MessagesMixin {
@@ -32,8 +33,7 @@ class MovieDetailController extends GetxController
       _movie(await _moviesService.getDetail(movieId));
       loading(false);
     } catch (e, s) {
-      print(e);
-      print(s);
+      Logger().e('Erro ao buscar detalhes', e, s);
       loading(false);
       message(MessageModel('Erro', 'Erro ao buscar filmes', MessageType.error));
     }

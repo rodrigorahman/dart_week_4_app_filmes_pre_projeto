@@ -1,6 +1,7 @@
 import 'package:filmes_app/application/ui/theme_extension.dart';
 import 'package:filmes_app/models/cast_model.dart';
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class MovieCast extends StatelessWidget {
   final CastModel cast;
@@ -16,14 +17,19 @@ class MovieCast extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Image.network(
-                'https://image.tmdb.org/t/p/w200/${cast.image}',
-                width: 85,
-                height: 85,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  return Image.network('https://static.thenounproject.com/png/2073332-200.png');
-                },
+              child: Visibility(
+                visible: cast.image.isNotEmpty,
+                child: FadeInImage.memoryNetwork(
+                  width: 85,
+                  height: 85,
+                  fit: BoxFit.cover,
+                  placeholder: kTransparentImage,
+                  image: 'https://image.tmdb.org/t/p/w200/${cast.image}',
+                  imageErrorBuilder: (context, error, stackTrace) {
+                    return Image.network(
+                        'https://static.thenounproject.com/png/2073332-200.png');
+                  },
+                ),
               ),
             ),
             const SizedBox(

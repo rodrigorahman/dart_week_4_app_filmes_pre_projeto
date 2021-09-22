@@ -17,7 +17,6 @@ class GenreRepositoryImpl implements GenreRepository {
   Future<List<GenreModel>> getGenres() async {
     final result = await _restClient.auth().get<List<GenreModel>>(
       '/genre/movie/list',
-      query: {'page': '1'},
       decoder: (data) {
         final result = data['genres'];
         if (result != null) {
